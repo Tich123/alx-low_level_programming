@@ -1,30 +1,14 @@
-#include <stdio.h>
-#include <stdbool.h>
+ 
+ def is_palindrome(n):
+    return str(n) == str(n)[::-1]
 
-// Function to check if a number is a palindrome
-bool is_palindrome(int n) {
-    int reversed = 0, original = n, remainder;
-    
-    while (n != 0) {
-        remainder = n % 10;
-        reversed = reversed * 10 + remainder;
-        n /= 10;
-    }
-    return original == reversed;
-}
+ max_palindrome = 0
 
-int main(void) {
-    int max_palindrome = 0;
-    for (int i = 999; i >= 100; i--) {
-        for (int j = i; j >= 100; j--) {  // Starting j from i avoids redundant checks
-            int prod = i * j;
-            if (prod <= max_palindrome) break;  // No point in continuing if product is smaller than max found
-            if (is_palindrome(prod) && prod > max_palindrome) {
-                max_palindrome = prod;
-            }
-        }
-    }
-    printf("Largest palindrome made from the product of two 3-digit numbers is: %d\n", max_palindrome);
-    return 0;
-}
+ for i in range(999, 99, -1):
+    for j in range(i, 99, -1):
+        product = i * j
+        if is_palindrome(product) and product > max_palindrome:
+            max_palindrome = product
+
+ print(max_palindrome)
 
